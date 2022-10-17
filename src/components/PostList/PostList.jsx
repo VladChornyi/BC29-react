@@ -1,15 +1,12 @@
-import data from "../data/data.json";
+import data from "../../data/data.json";
+import PostItem from "./PostItem";
 export const PostList = ({title}) => {
   // console.log("props", props);
   return (
     <>
       {title && <h2 className="post-list-title">{title}</h2>}
       <ul className="post-list">
-        {data.map(item=>(<li className="post-list-item" key={item.id}>
-          <img className="post-list-img" src={item.image} alt="" />
-          <h4 className="post-list-item-title">{item.title}</h4>
-          <p className="post-list-item-text">{item.description}</p>
-        </li>))}
+        {data.map(item=>(<PostItem key = {item.id} image={item.image} title={item.title} description={item.description} /> ))}
       </ul>
     </>
   );

@@ -1,5 +1,5 @@
 import "./App.css";
-import { PostList } from "./components/PostList";
+import PostList from "./PostList";
 
 function App() {
   const myTitle= 'Name'
