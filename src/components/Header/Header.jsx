@@ -10,7 +10,7 @@ export const Header = () => {
         <Wrapper>
           <Navigation />
           <MainTitle />
-          <MainButtom />
+          <MainButtom text="Buy now" />
         </Wrapper>
       </Container>
     </HeaderBox>

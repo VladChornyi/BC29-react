@@ -12,8 +12,9 @@ export const Button = styled.button`
   line-height: 1.5;
 
   text-align: center;
-  color: #ffffff;
-  border: none;
-  background: #111b47;
+  color: ${props => props.light ? "#111B47" : "#ffffff"};
+  border-color: ${props => props.light ? "#111B47" : "transparent"};
+  background: ${props => props.light ? 'transparent' : "#111B47"};
   border-radius: 2px;
 `;
+
