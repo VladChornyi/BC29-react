@@ -1,12 +1,12 @@
-import "./App.css";
-import PostList from "./PostList";
+import './App.css';
+import { AccordionItem } from './AccordionItem/AccordionItem.jsx';
 
 function App() {
-  const myTitle= 'Name'
+  const myTitle = 'Name';
   return (
     <>
       <h2 className="header-title">Котик на диете - несчастный котик</h2>
-      <PostList title={myTitle}/>
+      <AccordionItem />
     </>
   );
 }
