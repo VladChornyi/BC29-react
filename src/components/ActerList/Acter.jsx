@@ -1,31 +1,20 @@
-import { Component } from 'react';
+// import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export class Actors extends Component {
-  state = {
-    actors: this.props.actors,
-  };
-  actorDelete = event => {
-    this.setState(prevState => {
-      return { actors: prevState.actors.filter(actor => actor.id !== event.target.id) };
-    });
-  };
-  getSomathing = () => this.props.actors.length;
-  render() {
-    // console.log('this.props', this.props)
+export function Actors({ actors, actorDelete }) {
     return (
       <ul>
-        {this.state.actors.map(actor => (
+        {actors.map(actor => (
           <li key={actor.id}>
             <span>{actor.name}</span>
-            <button id={actor.id} onClick={this.actorDelete}>
+            <button id={actor.id} onClick={actorDelete}>
               Delete
             </button>
           </li>
         ))}
       </ul>
     );
-  }
+  
 }
 
 Actors.propTypes = {
