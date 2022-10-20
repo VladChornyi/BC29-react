@@ -1,12 +1,11 @@
-import "./App.css";
-import PostList from "./PostList";
+import './App.css';
+import actors from '../data/acter.json';
+import { Actors } from '../components/ActerList/Acter.jsx';
 
 function App() {
-  const myTitle= 'Name'
   return (
     <>
-      <h2 className="header-title">Котик на диете - несчастный котик</h2>
-      <PostList title={myTitle}/>
+      <Actors actors={actors} />
     </>
   );
 }
