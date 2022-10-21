@@ -4,6 +4,9 @@ import "./App.css";
 import actors from "../data/acter.json";
 import { Actors } from "../components/ActerList/Acter.jsx";
 import { ProductsList } from "./ProductsList";
+import { Tabs } from './Tabs/Tabs';
+import { Section } from "./Section/Section";
+import description from '../data/description.json';
 
 class App extends Component {
   state = {
@@ -26,12 +29,21 @@ class App extends Component {
   render() {
     return (
       <>
-        <Actors actors={this.state.actors} actorDelete={this.actorDelete} />
+        <Section title={"Actors"}>
+          <Actors actors={this.state.actors} actorDelete={this.actorDelete} />
+        </Section>
+
+        <Section title={"Products"}>
         <ProductsList
           actors={this.state.actors}
           activeEl={this.state.activeEl}
           handleBold={this.handleBold}
-        />
+          />
+        </Section>
+
+        <Section title={"Tabs"}>
+          <Tabs description={description} />
+        </Section>
       </>
     );
   }
