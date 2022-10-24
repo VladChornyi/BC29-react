@@ -8,9 +8,9 @@ export class Tabs extends Component {
   };
 
   componentDidMount() {
-    const id = localStorage.getItem(ID_LOCAL_KEY);
-    if (id) {
-      this.setState({ id: id });
+    const savedId = localStorage.getItem(ID_LOCAL_KEY);
+    if (savedId) {
+      this.setState({ id: savedId });
     }
   }
   componentDidUpdate(_, prevState) {
