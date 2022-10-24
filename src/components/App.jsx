@@ -7,6 +7,7 @@ import { ProductsList } from "./ProductsList";
 import { Tabs } from './Tabs/Tabs';
 import { Section } from "./Section/Section";
 import description from '../data/description.json';
+import {Albums} from "./Albums/Albums"
 
 class App extends Component {
   state = {
@@ -43,6 +44,9 @@ class App extends Component {
 
         <Section title={"Tabs"}>
           <Tabs description={description} />
+        </Section>
+        <Section title={"Albums"}>
+          <Albums />
         </Section>
       </>
     );
