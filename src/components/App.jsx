@@ -5,7 +5,7 @@ import { ProductsList } from "./ProductsList";
 import { Tabs } from "./Tabs/Tabs";
 import { Section } from "./Section/Section";
 import description from "../data/description.json";
-// import { Starwars } from "./Starwars/Starwars";
+import { Starwars } from "./Starwars/Starwars";
 import { Albums } from "./Albums/Albums";
 import { useState } from "react";
 
@@ -52,12 +52,12 @@ const App = () => {
         <Tabs description={description} />
       </Section>
 
-      {/* <Section title={"Starwars"}>
+      <Section title={"Starwars"}>
         <Starwars />
-        </Section>
-        <Section title={"Albums"}>
-          <Albums />
-        </Section> */}
+      </Section>
+      <Section title={"Albums"}>
+        <Albums />
+      </Section>
     </>
   );
 };

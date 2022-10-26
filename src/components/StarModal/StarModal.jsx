@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import { Backdrop, Modal } from './StarModal.styled';
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import { Backdrop, Modal } from "./StarModal.styled.js";
 
 export default class StarModal extends Component {
   static propTypes = { toggleModal: PropTypes.func };
