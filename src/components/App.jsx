@@ -8,6 +8,8 @@ import { Tabs } from './Tabs/Tabs';
 import { Section } from "./Section/Section";
 import description from '../data/description.json';
 import { Starwars } from "./Starwars/Starwars";
+import {Albums} from "./Albums/Albums"
+
 
 class App extends Component {
   state = {
@@ -46,8 +48,11 @@ class App extends Component {
           <Tabs description={description} />
         </Section>
 
+
         <Section title={"Starwars"}>
           <Starwars />
+        <Section title={"Albums"}>
+          <Albums />
         </Section>
       </>
     );
