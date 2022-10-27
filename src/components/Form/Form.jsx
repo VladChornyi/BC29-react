@@ -9,7 +9,7 @@ export const Form = () => {
   const telInput = useRef();
 
   const handleKeydown = (event) => {
-    console.log("event.target.name", event.target.name);
+   
     if (event.key === "Enter") {
       switch (event.target.name) {
         case "name":

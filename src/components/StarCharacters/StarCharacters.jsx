@@ -22,6 +22,6 @@ export default class StarCharacters extends Component {
 }
 
 StarCharacters.propTypes = {
-  catchName: PropTypes.string.isRequired,
+  characters: PropTypes.arrayOf(PropTypes.shape({name: PropTypes.string.isRequired,gender: PropTypes.string.isRequired})),
   toggleModal: PropTypes.func.isRequired,
 };

@@ -1,18 +1,35 @@
+import { keyboard } from "@testing-library/user-event/dist/keyboard/index.js";
 import PropTypes from "prop-types";
-import React, { Component } from "react";
+import { useEffect } from "react";
 import { Backdrop, Modal } from "./StarModal.styled.js";
 
-export default class StarModal extends Component {
-  static propTypes = { toggleModal: PropTypes.func };
 
-  state = {};
+const StarModal = ({ toggleModal, starData }) => {
+  useEffect(() => {
+    window.addEventListener('keydown', onEscape);
+    return () => {
+      window.removeEventListener('keydown', onEscape)
+    }
+  }, []);
+  
+  const onEscape = (e) => { 
+    if (e.key === 'Escape') {
+      toggleModal()
+    }
+  }
 
-  render() {
-    console.log(this.props.starData);
+  const handleClose = (e) => {
+    if (e.currentTarget === e.target) {
+      toggleModal()
+    }
+   }
+
+
+
     const { name, gender, birth_year, hair_color, skin_color } =
-      this.props.starData;
+      starData;
     return (
-      <Backdrop onClick={this.props.toggleModal}>
+      <Backdrop onClick={handleClose}>
         <Modal>
           <span>name: {name}</span>
           <span>gender: {gender}</span>
@@ -22,5 +39,14 @@ export default class StarModal extends Component {
         </Modal>
       </Backdrop>
     );
-  }
+  
 }
+
+export default StarModal;
+
+StarModal.propTypes = {
+  toggleModal: PropTypes.func.isRequired,
+  starData: PropTypes.shape({ name: PropTypes.string.isRequired, gender:PropTypes.string.isRequired, birth_year:PropTypes.string.isRequired, hair_color:PropTypes.string.isRequired, skin_color:PropTypes.string.isRequired})
+}
+
+

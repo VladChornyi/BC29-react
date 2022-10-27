@@ -49,7 +49,7 @@ export const Tabs = ({ description }) => {
       <ul className="tabs__caption">
         {description.map((item, index) => (
           <li
-            className={item.id === id && "active"}
+            className={item.id === id ? "active" : ''}
             onClick={handekClick}
             id={item.id}
             key={item.id}
@@ -60,7 +60,7 @@ export const Tabs = ({ description }) => {
       </ul>
       {description.map((item) => (
         <div
-          className={`tabs__content ${item.id === id && "active"}`}
+          className={`tabs__content ${item.id === id ? "active" : ''}`}
           key={item.id}
         >
           {item.descriptions.map((elem) => (

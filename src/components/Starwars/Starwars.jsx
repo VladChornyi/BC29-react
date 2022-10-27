@@ -22,7 +22,7 @@ export const Starwars = () => {
   };
 
   const toggleModal = (event) => {
-    const name = event.currentTarget.id;
+    const name = event?.currentTarget.id || null;
 
     if (name) {
       setActiveName(name);
