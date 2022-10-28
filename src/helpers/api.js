@@ -10,9 +10,7 @@ async function getAlbums() {
 
 export default getAlbums;
 
-export const getCharacters = async (
-  catchName
-) => {
+export const getCharacters = async (catchName) => {
   const { data } = await axios.get(
     `https://swapi.py4e.com/api/people/?search=${catchName}`
   );
@@ -25,5 +23,13 @@ export const sendData = async (data) => {
     'https://62becfba0bc9b125615fd0f7.mockapi.io/api/products',
     data
   );
-  console.log(response);
+  return response.data;
+};
+
+export const getData = async () => {
+  const response = await axios.get(
+    'https://62becfba0bc9b125615fd0f7.mockapi.io/api/products'
+  );
+  console.log(response.data);
+  return response.data;
 };

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { sendData } from '../../helpers/api';
 import {
   Button,
@@ -13,6 +13,9 @@ const Olx = () => {
   const [description, setDescription] =
     useState('');
 
+  const useEffect(()=>.)
+
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -41,6 +44,8 @@ const Olx = () => {
     };
     sendData(product);
   };
+
+
 
   return (
     <>
