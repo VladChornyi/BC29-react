@@ -1,15 +1,16 @@
-import "./App.css";
-import actorsData from "../data/acter.json";
-import { Actors } from "../components/ActerList/Acter.jsx";
-import { ProductsList } from "./ProductsList";
-import { Tabs } from "./Tabs/Tabs";
-import { Section } from "./Section/Section";
-import description from "../data/description.json";
-import { Starwars } from "./Starwars/Starwars";
-import { Albums } from "./Albums/Albums";
-import { useState } from "react";
-import { Counter } from "./Counter/Counter";
-import { Form } from "./Form/Form";
+import './App.css';
+import actorsData from '../data/acter.json';
+import { Actors } from '../components/ActerList/Acter.jsx';
+import { ProductsList } from './ProductsList';
+import { Tabs } from './Tabs/Tabs';
+import { Section } from './Section/Section';
+import description from '../data/description.json';
+import { Starwars } from './Starwars/Starwars';
+import { Albums } from './Albums/Albums';
+import { useState } from 'react';
+import { Counter } from './Counter/Counter';
+import { Form } from './Form/Form';
+import Olx from './Olx/Olx';
 
 const App = () => {
   // state = {
@@ -17,7 +18,8 @@ const App = () => {
   //   activeEl: null,
   // };
 
-  const [actors, setActors] = useState(actorsData);
+  const [actors, setActors] =
+    useState(actorsData);
 
   const [activeEl, setActiveEl] = useState(null);
 
@@ -33,19 +35,26 @@ const App = () => {
     //   };
     // });
     // setActors(prevActors => prevActors.filter((actor) => actor.id != event.target.id))
-    setActors(actors.filter((actor) => actor.id != event.target.id));
+    setActors(
+      actors.filter(
+        (actor) => actor.id != event.target.id
+      )
+    );
   };
 
   return (
     <>
-      <Section title="Form">
+      {/* <Section title="Form">
         <Form />
       </Section>
-      <Section title={"Actors"}>
-        <Actors actors={actors} actorDelete={actorDelete} />
+      <Section title={'Actors'}>
+        <Actors
+          actors={actors}
+          actorDelete={actorDelete}
+        />
       </Section>
 
-      <Section title={"Products"}>
+      <Section title={'Products'}>
         <ProductsList
           actors={actorsData}
           activeEl={activeEl}
@@ -53,18 +62,21 @@ const App = () => {
         />
       </Section>
 
-      <Section title={"Tabs"}>
+      <Section title={'Tabs'}>
         <Tabs description={description} />
       </Section>
 
-      <Section title={"Starwars"}>
+      <Section title={'Starwars'}>
         <Starwars />
       </Section>
-      <Section title={"Albums"}>
+      <Section title={'Albums'}>
         <Albums />
-      </Section>
+      </Section>y
       <Section title="Counter">
         <Counter />
+      </Section> */}
+      <Section title="OLX">
+        <Olx />
       </Section>
     </>
   );
