@@ -1,61 +1,59 @@
 // import PropTypes from 'prop-types'
-import React, { Component } from 'react';
-import { getCharacters } from '../../helpers/api';
-import StarCharacters from '../StarCharacters/StarCharacters';
-import StarForm from '../StarForm/StarForm';
-import StarModal from '../StarModal/StarModal';
+import React, { useState, useEffect } from "react";
+import { getCharacters } from "../../helpers/api.js";
+import StarCharacters from "../StarCharacters/StarCharacters";
+import StarForm from "../StarForm/StarForm";
+import StarModal from "../StarModal/StarModal";
 
-export class Starwars extends Component {
-  state = {
-    catchName: '',
-    isOpenModal: false,
-    characters: [],
-    activeName: '',
+export const Starwars = () => {
+  const [catchName, setCatchName] = useState("");
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [characters, setCharacters] = useState([]);
+  const [activeName, setActiveName] = useState("");
+  // state = {
+  //   catchName: "",
+  //   isOpenModal: false,
+  //   characters: [],
+  //   activeName: "",
+  // };
+
+  const handleSubmit = (catchName) => {
+    setCatchName(catchName);
   };
 
-  handleSubmit = (catchName) => {
-    this.setState({ catchName });
-  };
-
-  toggleModal = (event) => {
-    const name = event.currentTarget.id;
+  const toggleModal = (event) => {
+    const name = event?.currentTarget.id || null;
 
     if (name) {
-      this.setState({ activeName: name });
+      setActiveName(name);
     }
-    this.setState((prevState) => ({
-      isOpenModal: !prevState.isOpenModal,
-    }));
+    setIsOpenModal(!isOpenModal);
   };
 
-  getActiveData = () => {
-    console.log(this.state.activeName);
-    return this.state.characters.find(
-      (character) => this.state.activeName === character.name
-    );
+  const getActiveData = () => {
+    return characters.find((character) => activeName === character.name);
   };
-  async componentDidUpdate(_, prevState) {
-    if (prevState.catchName !== this.state.catchName) {
-      const data = await getCharacters(this.state.catchName);
-      this.setState({ characters: data.results });
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getCharacters(catchName);
+      setCharacters(data.results);
     }
-  }
+    fetchData();
+  }, [catchName]);
+  // async componentDidUpdate(_, prevState) {
+  // if (prevState.catchName !== this.state.catchName) {
+  //   const data = await getCharacters(this.state.catchName);
+  //   this.setState({ characters: data.results });
+  // }
+  // }
 
-  render() {
-    return (
-      <>
-        <StarForm onSubmit={this.handleSubmit} />
-        <StarCharacters
-          characters={this.state.characters}
-          toggleModal={this.toggleModal}
-        />
-        {this.state.isOpenModal && (
-          <StarModal
-            toggleModal={this.toggleModal}
-            starData={this.getActiveData()}
-          />
-        )}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <StarForm onSubmit={handleSubmit} />
+      <StarCharacters characters={characters} toggleModal={toggleModal} />
+      {isOpenModal && (
+        <StarModal toggleModal={toggleModal} starData={getActiveData()} />
+      )}
+    </>
+  );
+};

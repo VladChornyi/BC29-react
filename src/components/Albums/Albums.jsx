@@ -1,19 +1,19 @@
-import { Component } from 'react';
-import getAlbums from '../../helpers/Api';
-import { ButtonMore } from '../ButtonMore/ButtonMore';
+import { Component } from "react";
+import getAlbums from "../../helpers/api.js";
+import { ButtonMore } from "../ButtonMore/ButtonMore";
 
 export class Albums extends Component {
   state = {
     albums: [],
     currentPage: 1,
-    errorMessage: '',
+    errorMessage: "",
   };
 
   async componentDidMount() {
     try {
       const data = await getAlbums();
 
-      this.setState({ albums: data, errorMessage: '' });
+      this.setState({ albums: data, errorMessage: "" });
     } catch (error) {
       this.setState({ errorMessage: error.message });
     }
@@ -27,7 +27,7 @@ export class Albums extends Component {
     return albums.slice(startIndex, endIndex);
   };
   handlePageChange = () => {
-    this.setState(prevSt => ({
+    this.setState((prevSt) => ({
       currentPage: prevSt.currentPage + 1,
     }));
   };
@@ -37,7 +37,7 @@ export class Albums extends Component {
       <>
         <p>{this.state.currentPage}</p>
         <ul>
-          {this.handleArraySlice().map(album => (
+          {this.handleArraySlice().map((album) => (
             <li key={album.id}>
               album №{album.id}: {album.title}
             </li>
@@ -45,7 +45,7 @@ export class Albums extends Component {
         </ul>
         <ButtonMore
           isDisabled={this.state.currentPage * 10 >= this.state.albums.length}
-          text={'Load more'}
+          text={"Load more"}
           onClick={this.handlePageChange}
         />
       </>
