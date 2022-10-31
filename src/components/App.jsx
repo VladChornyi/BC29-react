@@ -14,6 +14,7 @@ import Olx from './Olx/Olx';
 import { Route, Routes } from 'react-router-dom';
 import { HomePage } from '../pages/Homepage';
 import NotFound from '../pages/NotFound/NotFound';
+import {Header} from './Header/Header';
 
 const App = () => {
 
@@ -31,7 +32,7 @@ const App = () => {
 
   return (
     <>
-      
+      <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/actors' element={<Actors/>} />
