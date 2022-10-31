@@ -1,14 +1,17 @@
 import axios from 'axios';
 
 async function getAlbums() {
+
   const { data } = await axios.get(
     `https://jsonplaceholder.typicode.com/albums`
   );
+
 
   return data;
 }
 
 export default getAlbums;
+
 
 export const getCharacters = async (catchName) => {
   const { data } = await axios.get(
@@ -33,3 +36,4 @@ export const getData = async () => {
   console.log(response.data);
   return response.data;
 };
+
