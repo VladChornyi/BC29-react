@@ -13,7 +13,7 @@ const Olx = () => {
   const [description, setDescription] =
     useState('');
 
-  const useEffect(()=>.)
+  // const useEffect(()=>.)
 
   
   const handleChange = (e) => {

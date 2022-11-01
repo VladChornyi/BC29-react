@@ -1,27 +1,31 @@
-import PropTypes from 'prop-types';
-import { Component } from 'react';
-// import { getCharacters } from '../../helpers/api';
+import PropTypes from 'prop-types'
 
-export default class StarCharacters extends Component {
-  render() {
-    return (
-      <ul>
-        {this.props.characters.map((character) => (
-          <li
-            key={character.name}
-            onClick={this.props.toggleModal}
-            id={character.name}
-          >
+// import { getCharacters } from '../../helpers/api';
+import { CharectersItem, CharecterList, Wrapper } from './StarCharacters.styled'
+
+const StarCharacters = ({ toggleModal, characters }) => {
+  return (
+    <CharecterList>
+      {characters.map((character) => (
+        <CharectersItem key={character.name}>
+          <Wrapper onClick={toggleModal} id={character.name}>
             <span> name {character.name}</span>
             <span> gender {character.gender}</span>
-          </li>
-        ))}
-      </ul>
-    );
-  }
+          </Wrapper>
+        </CharectersItem>
+      ))}
+    </CharecterList>
+  )
 }
 
+export default StarCharacters
+
 StarCharacters.propTypes = {
-  characters: PropTypes.arrayOf(PropTypes.shape({name: PropTypes.string.isRequired,gender: PropTypes.string.isRequired})),
+  characters: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      gender: PropTypes.string.isRequired,
+    })
+  ),
   toggleModal: PropTypes.func.isRequired,
-};
+}
