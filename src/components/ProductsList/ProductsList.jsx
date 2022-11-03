@@ -1,5 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
-import { colorizeActorAction, deleteActorAction } from "../../redux/store";
+import {
+  colorizeActorAction,
+  deleteActorAction,
+  returnAllActorsAction,
+} from "../../redux/store";
 
 export const ProductsList = () => {
   const { actorsData, activeActor } = useSelector((state) => state);
@@ -15,21 +19,31 @@ export const ProductsList = () => {
   };
 
   return (
-    <ul>
-      {actorsData.map(({ id, name }) => (
-        <li key={id}>
-          <span
-            style={activeActor == id ? { color: "red" } : { color: "black" }}
-            id={id}
-            onClick={handleBold}
-          >
-            {name}
-          </span>
-          <button type="button" onClick={handleDelete} data-id={id}>
-            Delete
-          </button>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul>
+        {actorsData.map(({ id, name }) => (
+          <li key={id}>
+            <span
+              style={activeActor == id ? { color: "red" } : { color: "black" }}
+              id={id}
+              onClick={handleBold}
+            >
+              {name}
+            </span>
+            <button type="button" onClick={handleDelete} data-id={id}>
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+      <button
+        onClick={() => {
+          dispatch(returnAllActorsAction());
+        }}
+        type="button"
+      >
+        bring back from hell
+      </button>
+    </>
   );
 };
