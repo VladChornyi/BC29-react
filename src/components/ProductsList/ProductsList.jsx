@@ -1,13 +1,20 @@
-// import { Component } from "react";
-import PropTypes from "prop-types";
+import { useSelector, useDispatch } from 'react-redux';
+import { colorizeActorAction } from '../../redux/store';
 
-export const ProductsList = ({ actors, activeEl, handleBold }) => {
+export const ProductsList = () => {
+  const { actorsData, activeActor } = useSelector(state => state);
+  const dispatch = useDispatch();
+
+  const handleBold = e => {
+    dispatch(colorizeActorAction(e.target.id));
+  };
+
   return (
     <ul>
-      {actors.map(({ id, name }) => (
+      {actorsData.map(({ id, name }) => (
         <li key={id}>
           <span
-            style={activeEl == id ? { color: "red" } : { color: "black" }}
+            style={activeActor == id ? { color: 'red' } : { color: 'black' }}
             id={id}
             onClick={handleBold}
           >
@@ -17,13 +24,4 @@ export const ProductsList = ({ actors, activeEl, handleBold }) => {
       ))}
     </ul>
   );
-};
-
-ProductsList.propTypes = {
-  actors: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
-    })
-  ),
 };
