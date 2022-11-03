@@ -13,10 +13,17 @@ export const colorizeActorAction = payload => {
   return { type: 'actors/colorizeActor', payload };
 };
 
+export const deleteActorAction = payload => {
+  return { type: 'actors/deleteActor', payload };
+}
+
 function actorsReducer(state = init, action) {
+  console.log(action, state);
   switch (action.type) {
     case 'actors/colorizeActor':
       return { ...state, activeActor: action.payload };
+    case 'actors/deleteActor':
+      return {...state, actorsData: state.actorsData.filter(actor => actor.id != action.payload)}
     default:
       return state;
   }
