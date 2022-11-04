@@ -1,19 +1,19 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux';
 import {
   colorizeActorAction,
   deleteActorAction,
   returnAllActorsAction,
-} from "../../redux/store";
+} from '../../redux/products/slice.productList';
 
 export const ProductsList = () => {
-  const { actorsData, activeActor } = useSelector((state) => state);
+  const { actorsData, activeActor } = useSelector(state => state.actors);
   const dispatch = useDispatch();
 
-  const handleBold = (e) => {
+  const handleBold = e => {
     dispatch(colorizeActorAction(e.target.id));
   };
 
-  const handleDelete = (e) => {
+  const handleDelete = e => {
     dispatch(deleteActorAction(e.target.dataset.id));
     console.log(e.target.dataset.id);
   };
@@ -24,7 +24,7 @@ export const ProductsList = () => {
         {actorsData.map(({ id, name }) => (
           <li key={id}>
             <span
-              style={activeActor == id ? { color: "red" } : { color: "black" }}
+              style={activeActor == id ? { color: 'red' } : { color: 'black' }}
               id={id}
               onClick={handleBold}
             >
