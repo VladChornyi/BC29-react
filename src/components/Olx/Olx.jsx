@@ -1,32 +1,32 @@
-import { useEffect, useState } from 'react';
-import { sendData } from '../../helpers/api';
-import {
-  Button,
-  Form,
-  Input,
-  Textarea,
-} from './Olx.styled';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { sendData } from "../../helpers/api";
+import { getProducts } from "../../redux/olx/operations.olx";
+import { Button, Form, Input, Textarea } from "./Olx.styled";
+import { getOlxProducts } from "../../redux/olx/selectors";
 
 const Olx = () => {
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-  const [description, setDescription] =
-    useState('');
+  const [description, setDescription] = useState("");
+  const products = useSelector(getOlxProducts);
 
-  // const useEffect(()=>.)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
 
-  
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     switch (name) {
-      case 'name':
+      case "name":
         setName(value);
         break;
-      case 'price':
+      case "price":
         setPrice(value);
         break;
-      case 'description':
+      case "description":
         setDescription(value);
         break;
 
@@ -45,17 +45,10 @@ const Olx = () => {
     sendData(product);
   };
 
-
-
   return (
     <>
       <Form onSubmit={addProduct}>
-        <Input
-          value={name}
-          name="name"
-          onChange={handleChange}
-          type="text"
-        />
+        <Input value={name} name="name" onChange={handleChange} type="text" />
         <Input
           value={price}
           name="price"
@@ -69,6 +62,15 @@ const Olx = () => {
         />
         <Button type="submit">Send</Button>
       </Form>
+      <ol>
+        {products.map((item) => (
+          <li key={item.id}>
+            <p>{item.name}</p>
+            <p>{item.price}</p>
+            <p>{item.description}</p>
+          </li>
+        ))}
+      </ol>
     </>
   );
 };
