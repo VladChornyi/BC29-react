@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendData } from "../../helpers/api";
-import { getProducts } from "../../redux/olx/operations.olx";
+import { addProducts, getProducts } from "../../redux/olx/operations.olx";
 import { Button, Form, Input, Textarea } from "./Olx.styled";
 import { getOlxProducts } from "../../redux/olx/selectors";
 
@@ -10,6 +10,7 @@ const Olx = () => {
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const products = useSelector(getOlxProducts);
+  
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -35,36 +36,42 @@ const Olx = () => {
     }
   };
 
-  const addProduct = (e) => {
+  const addProductSubmit = (e) => {
     e.preventDefault();
     const product = {
       name,
       price,
       description,
     };
-    sendData(product);
+    dispatch(addProducts(product))
+    setName(''); setPrice(''); setDescription('');
+
   };
 
   return (
     <>
-      <Form onSubmit={addProduct}>
-        <Input value={name} name="name" onChange={handleChange} type="text" />
+      <Form onSubmit={addProductSubmit}>
+        <Input value={name} name="name" onChange={handleChange} type="text" required minLength={3} />
         <Input
           value={price}
           name="price"
           onChange={handleChange}
           type="number"
+          required
+          min={1}
         />
         <Textarea
           value={description}
           name="description"
           onChange={handleChange}
+          required
+          minLength={10}
         />
         <Button type="submit">Send</Button>
       </Form>
       <ol>
         {products.map((item) => (
-          <li key={item.id}>
+          <li key={item.id + item.name}>
             <p>{item.name}</p>
             <p>{item.price}</p>
             <p>{item.description}</p>
