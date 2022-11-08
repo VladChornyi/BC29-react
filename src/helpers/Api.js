@@ -1,17 +1,14 @@
-import axios from 'axios';
+import axios from "axios";
 
 async function getAlbums() {
-
   const { data } = await axios.get(
     `https://jsonplaceholder.typicode.com/albums`
   );
-
 
   return data;
 }
 
 export default getAlbums;
-
 
 export const getCharacters = async (catchName) => {
   const { data } = await axios.get(
@@ -23,7 +20,7 @@ export const getCharacters = async (catchName) => {
 
 export const sendData = async (data) => {
   const response = await axios.post(
-    'https://62becfba0bc9b125615fd0f7.mockapi.io/api/products',
+    "https://62becfba0bc9b125615fd0f7.mockapi.io/api/products",
     data
   );
   return response.data;
@@ -31,8 +28,13 @@ export const sendData = async (data) => {
 
 export const getData = async () => {
   const response = await axios.get(
-    'https://62becfba0bc9b125615fd0f7.mockapi.io/api/products'
+    "https://62becfba0bc9b125615fd0f7.mockapi.io/api/products"
   );
   return response.data;
 };
-
+export const deleteData = async (id) => {
+  const response = await axios.delete(
+    `https://62becfba0bc9b125615fd0f7.mockapi.io/api/products/${id}`
+  );
+  return response.data;
+};

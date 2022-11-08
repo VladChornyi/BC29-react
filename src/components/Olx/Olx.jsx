@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendData } from "../../helpers/api";
-import { addProducts, getProducts } from "../../redux/olx/operations.olx";
+import {
+  addProducts,
+  getProducts,
+  removeProducts,
+} from "../../redux/olx/operations.olx";
 import { Button, Form, Input, Textarea } from "./Olx.styled";
 import { getOlxProducts } from "../../redux/olx/selectors";
 
@@ -10,7 +14,6 @@ const Olx = () => {
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const products = useSelector(getOlxProducts);
-  
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -43,15 +46,26 @@ const Olx = () => {
       price,
       description,
     };
-    dispatch(addProducts(product))
-    setName(''); setPrice(''); setDescription('');
-
+    dispatch(addProducts(product));
+    setName("");
+    setPrice("");
+    setDescription("");
+  };
+  const handleDelete = (id) => {
+    dispatch(removeProducts(id));
   };
 
   return (
     <>
       <Form onSubmit={addProductSubmit}>
-        <Input value={name} name="name" onChange={handleChange} type="text" required minLength={3} />
+        <Input
+          value={name}
+          name="name"
+          onChange={handleChange}
+          type="text"
+          required
+          minLength={3}
+        />
         <Input
           value={price}
           name="price"
@@ -75,6 +89,9 @@ const Olx = () => {
             <p>{item.name}</p>
             <p>{item.price}</p>
             <p>{item.description}</p>
+            <button type="button" onClick={() => handleDelete(item.id)}>
+              Delete
+            </button>
           </li>
         ))}
       </ol>

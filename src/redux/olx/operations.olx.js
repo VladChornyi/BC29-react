@@ -1,26 +1,37 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getData, sendData } from "../../helpers/api";
+import { deleteData, getData, sendData } from "../../helpers/api";
 
 export const getProducts = createAsyncThunk(
-  'poducts/fetchAll',
+  "poducts/fetchAll",
   async (_, thunkAPI) => {
     try {
-      const response = await getData()
-      return response
+      const response = await getData();
+      return response;
     } catch (e) {
-      return thunkAPI.rejectWithValue(e.message)
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
-)
+);
 
 export const addProducts = createAsyncThunk(
-  'products/addProduct',
+  "products/addProduct",
   async (product, thunkAPI) => {
     try {
-      const response = await sendData(product)
+      const response = await sendData(product);
       return response;
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.message)
+      return thunkAPI.rejectWithValue(err.message);
     }
   }
-)
+);
+export const removeProducts = createAsyncThunk(
+  "products/removeProduct",
+  async (id, thunkAPI) => {
+    try {
+      const response = await deleteData(id);
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
