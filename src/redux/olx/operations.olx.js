@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getData } from "../../helpers/api";
+import { getData, sendData } from "../../helpers/api";
 
 export const getProducts = createAsyncThunk(
   'poducts/fetchAll',
@@ -9,6 +9,18 @@ export const getProducts = createAsyncThunk(
       return response
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message)
+    }
+  }
+)
+
+export const addProducts = createAsyncThunk(
+  'products/addProduct',
+  async (product, thunkAPI) => {
+    try {
+      const response = await sendData(product)
+      return response;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message)
     }
   }
 )

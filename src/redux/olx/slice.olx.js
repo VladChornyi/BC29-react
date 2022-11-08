@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getProducts } from "./operations.olx";
+import { addProducts, getProducts } from "./operations.olx";
 
 const Status = {
   init: 'INIT',
@@ -29,7 +29,19 @@ const initialState = {
      },
      [getProducts.rejected](state) {
        state.status = Status.error
-    }
+     },
+
+     [addProducts.pending](state) {
+       state.status = Status.loading
+     },
+     [addProducts.fulfilled](state, action) {
+       state.status = Status.success
+       state.products = [...state.products, action.payload]
+     },
+     [addProducts.rejected](state) {
+       state.status = Status.error
+     }  
+     
   }
  })
 
