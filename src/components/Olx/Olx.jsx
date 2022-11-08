@@ -1,36 +1,37 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { sendData } from "../../helpers/api";
-import {
-  addProducts,
-  getProducts,
-  removeProducts,
-} from "../../redux/olx/operations.olx";
-import { Button, Form, Input, Textarea } from "./Olx.styled";
-import { getOlxProducts } from "../../redux/olx/selectors";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { sendData } from '../../helpers/api';
+import { addProducts, getProducts, removeProducts } from '../../redux/olx/operations.olx';
+import { Button, Form, Input, Textarea } from './Olx.styled';
+import { getOlxProducts } from '../../redux/olx/selectors';
+import { Radio } from 'react-loader-spinner';
+// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 const Olx = () => {
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
+  const [idActive, setIdActive] = useState();
   const products = useSelector(getOlxProducts);
-
+  const status = useSelector(state => state.olx.status);
+  console.log('status :', status);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
 
     switch (name) {
-      case "name":
+      case 'name':
         setName(value);
         break;
-      case "price":
+      case 'price':
         setPrice(value);
         break;
-      case "description":
+      case 'description':
         setDescription(value);
         break;
 
@@ -39,19 +40,23 @@ const Olx = () => {
     }
   };
 
-  const addProductSubmit = (e) => {
+  const addProductSubmit = e => {
     e.preventDefault();
     const product = {
       name,
       price,
       description,
     };
+    if (products.some(product => product.name === name)) {
+      return alert(`dublicate product ${name}`);
+    }
     dispatch(addProducts(product));
-    setName("");
-    setPrice("");
-    setDescription("");
+    setName('');
+    setPrice('');
+    setDescription('');
   };
-  const handleDelete = (id) => {
+  const handleDelete = id => {
+    setIdActive(id);
     dispatch(removeProducts(id));
   };
 
@@ -66,14 +71,7 @@ const Olx = () => {
           required
           minLength={3}
         />
-        <Input
-          value={price}
-          name="price"
-          onChange={handleChange}
-          type="number"
-          required
-          min={1}
-        />
+        <Input value={price} name="price" onChange={handleChange} type="number" required min={1} />
         <Textarea
           value={description}
           name="description"
@@ -84,14 +82,26 @@ const Olx = () => {
         <Button type="submit">Send</Button>
       </Form>
       <ol>
-        {products.map((item) => (
+        {products.map(item => (
           <li key={item.id + item.name}>
             <p>{item.name}</p>
             <p>{item.price}</p>
             <p>{item.description}</p>
-            <button type="button" onClick={() => handleDelete(item.id)}>
-              Delete
-            </button>
+
+            {status === 'LOADING' && idActive === item.id ? (
+              <Radio
+                visible={true}
+                height="20"
+                width="20"
+                ariaLabel="radio-loading"
+                wrapperStyle={{}}
+                wrapperClass="radio-wrapper"
+              />
+            ) : (
+              <button type="button" id={item.id} onClick={() => handleDelete(item.id)}>
+                Delete
+              </button>
+            )}
           </li>
         ))}
       </ol>
