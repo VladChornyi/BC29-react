@@ -1,11 +1,14 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { registration } from "../../redux/auth/auth-operation";
 
 export const RegistrationForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repPassword, setRepPassword] = useState("");
+  const dispatch = useDispatch();
 
   const inputs = {
     name: setName,
@@ -13,7 +16,6 @@ export const RegistrationForm = () => {
     password: setPassword,
     repPassword: setRepPassword,
   };
-
   const handleInput = (evt) => {
     inputs[evt.target.name](evt.target.value.trim());
   };
@@ -26,6 +28,7 @@ export const RegistrationForm = () => {
         email,
         password,
       };
+      dispatch(registration(userInfo));
     } else {
       toast.warn("Упс, паролі не збігаються");
     }
