@@ -1,51 +1,50 @@
-// import PropTypes from 'prop-types'
-import React, { useState, useEffect } from 'react'
-import { getCharacters } from '../../helpers/api.js'
+import React, { useEffect } from 'react'
+
 import StarCharacters from '../../components/StarCharacters/StarCharacters'
 import StarForm from '../../components/StarForm/StarForm'
 import StarModal from '../../components/StarModal/StarModal'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCharactersData } from '../../redux/starwars/operations.js'
+import {
+  getActiveName,
+  getCatchName,
+  getCharactersState,
+  getIsOpenModal,
+} from '../../redux/starwars/selectors.js'
+import {
+  setActiveName,
+  setCatchName,
+  setToggleModal,
+} from '../../redux/starwars/sliceStarwars.js'
 
 export const StarwarsPage = () => {
-  const [catchName, setCatchName] = useState('')
-  const [isOpenModal, setIsOpenModal] = useState(false)
-  const [characters, setCharacters] = useState([])
-  const [activeName, setActiveName] = useState('')
-  // state = {
-  //   catchName: "",
-  //   isOpenModal: false,
-  //   characters: [],
-  //   activeName: "",
-  // };
+  const catchName = useSelector(getCatchName)
+  const isOpenModal = useSelector(getIsOpenModal)
+  const characters = useSelector(getCharactersState)
+  const activeName = useSelector(getActiveName)
+
+  const dispatch = useDispatch()
 
   const handleSubmit = (catchName) => {
-    setCatchName(catchName)
+    dispatch(setCatchName(catchName))
   }
 
   const toggleModal = (event) => {
     const name = event?.currentTarget.id || null
 
     if (name) {
-      setActiveName(name)
+      dispatch(setActiveName(name))
+      dispatch(setToggleModal(true))
     }
-    setIsOpenModal(!isOpenModal)
   }
 
   const getActiveData = () => {
     return characters.find((character) => activeName === character.name)
   }
+
   useEffect(() => {
-    async function fetchData() {
-      const data = await getCharacters(catchName)
-      setCharacters(data.results)
-    }
-    fetchData()
+    dispatch(getCharactersData(catchName))
   }, [catchName])
-  // async componentDidUpdate(_, prevState) {
-  // if (prevState.catchName !== this.state.catchName) {
-  //   const data = await getCharacters(this.state.catchName);
-  //   this.setState({ characters: data.results });
-  // }
-  // }
 
   return (
     <>

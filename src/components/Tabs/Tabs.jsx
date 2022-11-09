@@ -1,47 +1,25 @@
 import { useState, useEffect } from "react";
 import "./Tabs.css";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { setId } from "../../redux/tabs/sliceTabs";
+import  description from '../../data/description.json';
 const ID_LOCAL_KEY = "active-id";
-export const Tabs = ({ description }) => {
-  // state = {
-  //   id: this.props.description[0].id,
-  // };
 
-  const [id, setId] = useState(getSavedId);
 
-  useEffect(() => {
-    localStorage.setItem(ID_LOCAL_KEY, id);
-  }, [id]);
 
-  function getSavedId() {
-    const savedId = localStorage.getItem(ID_LOCAL_KEY);
+export const Tabs = () => {
+  const dispatch = useDispatch();
+  const id = useSelector(state => state.tabs.id);
 
-    if (savedId) {
-      return savedId;
-    }
-    return description[0].id;
-  }
-
-  // componentDidMount() {
-  //   const savedId = localStorage.getItem(ID_LOCAL_KEY);
-  //   if (savedId) {
-  //     this.setState({ id: savedId });
-  //   }
-  // }
-
-  // componentDidUpdate(_, prevState) {
-  //   const { id } = this.state;
-  //   if (prevState.id !== id) {
-  //     localStorage.setItem(ID_LOCAL_KEY, id);
-  //   }
-  // }
 
   const handekClick = (e) => {
     // this.setState({
     //   id: e.target.id,
     // });
 
-    setId(e.target.id);
+    // setId(e.target.id);
+    dispatch(setId(e.target.id));
   };
 
   return (
