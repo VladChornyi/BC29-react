@@ -1,8 +1,8 @@
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Route, Routes } from 'react-router-dom';
-import Registration from '../pages/Registration/Registration';
-import { Layout } from './Layout/Layout';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Route, Routes } from "react-router-dom";
+import Registration from "../pages/Registration/Registration";
+import { Layout } from "./Layout/Layout";
 
 export const App = () => {
   return (
@@ -22,6 +22,7 @@ export const App = () => {
         pauseOnHover
         theme="light"
       />
+
       <ToastContainer />
     </Layout>
   );
