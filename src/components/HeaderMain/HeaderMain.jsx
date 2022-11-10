@@ -1,6 +1,6 @@
-import { HiHome } from 'react-icons/hi';
+import { HiHome } from "react-icons/hi";
 
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 export const HeaderMain = () => {
   return (
@@ -14,7 +14,7 @@ export const HeaderMain = () => {
             <NavLink to="/registration">Реєстрація</NavLink>
           </li>
           <li>
-            <NavLink>Авторизація</NavLink>
+            <NavLink to="/login">Авторизація</NavLink>
           </li>
         </ul>
       </nav>
