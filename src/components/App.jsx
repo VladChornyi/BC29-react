@@ -1,9 +1,26 @@
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { Route, Routes } from "react-router-dom";
-import Registration from "../pages/Registration/Registration";
-import { Layout } from "./Layout/Layout";
-import { LoginPage } from "../pages/LoginPage/LoginPage";
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { Route, Routes } from 'react-router-dom'
+import Registration from '../pages/Registration/Registration'
+import { Layout } from './Layout/Layout'
+import { LoginPage } from '../pages/LoginPage/LoginPage'
+import './App.css'
+
+// import { Actors } from '../pages/ActorsPage/ActorsPage.jsx'
+// import { ProductsList } from './ProductsList'
+// import { Tabs } from './Tabs/Tabs'
+// import { Section } from './Section/Section'
+// import description from '../data/description.json'
+// import { StarwarsPage } from '../pages/StarwarsPage/StarwarsPage'
+// import { Albums } from './Albums/Albums'
+// import { useState } from 'react'
+// import { Counter } from './Counter/Counter'
+// import { Form } from './Form/Form'
+// import Olx from './Olx/Olx'
+
+// import { HomePage } from '../pages/Homepage'
+// import NotFound from '../pages/NotFound/NotFound'
+// import { Header } from './Header/Header'
 
 export const App = () => {
   return (
@@ -27,8 +44,8 @@ export const App = () => {
 
       <ToastContainer />
     </Layout>
-  );
-};
+  )
+}
 
 // import './App.css'
 // import actorsData from '../data/actors.json'
