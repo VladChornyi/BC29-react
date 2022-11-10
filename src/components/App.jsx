@@ -5,6 +5,10 @@ import Registration from '../pages/Registration/Registration'
 import { Layout } from './Layout/Layout'
 import { LoginPage } from '../pages/LoginPage/LoginPage'
 import './App.css'
+import ProductsPage from '../pages/ProductsPage'
+import PrivateRouts from './PrivateRouts/PrivateRouts'
+import PublicRouts from './PublicRouts/PublicRouts'
+import HomePage from '../pages/HomePage/HomePage'
 
 // import { Actors } from '../pages/ActorsPage/ActorsPage.jsx'
 // import { ProductsList } from './ProductsList'
@@ -26,8 +30,15 @@ export const App = () => {
   return (
     <Layout>
       <Routes>
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<PublicRouts />}>
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Route>
+
+        <Route path="/" element={<PrivateRouts />}>
+          <Route path="/products" element={<ProductsPage />} />
+        </Route>
       </Routes>
       <ToastContainer
         position="top-right"
