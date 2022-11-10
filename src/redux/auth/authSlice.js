@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchStatus } from "../fetchStatus";
-import { loginOperation, registration } from "./auth-operation";
+import { loginOperation, registration, token } from "./auth-operation";
 
 const initialState = {
   user: { name: null, email: null },
@@ -12,6 +12,12 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
+  reducers: {
+    logout: () => {
+      token.unset()
+      return initialState;
+
+  }},
 
   extraReducers: {
     [registration.pending](state) {
@@ -47,6 +53,8 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       state.token = null;
     },
-  },
+      },
 });
+
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;

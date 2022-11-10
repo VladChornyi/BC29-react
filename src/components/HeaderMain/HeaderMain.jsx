@@ -1,8 +1,12 @@
 import { HiHome } from "react-icons/hi";
+import { useDispatch } from "react-redux";
 
 import { NavLink } from "react-router-dom";
+import { logout } from "../../redux/auth/authSlice";
 
 export const HeaderMain = () => {
+const dispatch = useDispatch()
+
   return (
     <header>
       <nav>
@@ -20,7 +24,7 @@ export const HeaderMain = () => {
             <NavLink to="/products">Продукти</NavLink>
           </li>
         </ul>
-        <button type="button">Вийти</button>
+        <button type="button" onClick={()=> dispatch(logout())} >Вийти</button>
       </nav>
     </header>
   );
