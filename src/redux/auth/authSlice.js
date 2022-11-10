@@ -12,6 +12,7 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
+
   extraReducers: {
     [registration.pending](state) {
       state.status = fetchStatus.loading;

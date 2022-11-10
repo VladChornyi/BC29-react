@@ -1,6 +1,6 @@
-import { HiHome } from 'react-icons/hi'
+import { HiHome } from "react-icons/hi";
 
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 
 export const HeaderMain = () => {
   return (
@@ -20,7 +20,8 @@ export const HeaderMain = () => {
             <NavLink to="/products">Продукти</NavLink>
           </li>
         </ul>
+        <button type="button">Вийти</button>
       </nav>
     </header>
-  )
-}
+  );
+};
