@@ -6,11 +6,20 @@ const rickAndMortyState = {
   status: fetchStatus.init, 
   error: null,
   characters: [],
+  currentPage: 1,
 };
 
 const rickAndMortySlice = createSlice({
   name: 'rickAndMorty',
   initialState: rickAndMortyState,
+  reducers: {
+    addPage(state) {
+      state.currentPage+=1;
+    }, 
+    minusPage(state) {
+      state.currentPage-=1;
+    }
+  },
    extraReducers: (builder) => {
      builder.addCase(fetchCharacters.pending, (state) => {
        state.status = fetchStatus.loading;
@@ -26,3 +35,4 @@ const rickAndMortySlice = createSlice({
 })
 
 export const rickAndMortyReducer = rickAndMortySlice.reducer;
+export const {addPage, minusPage} = rickAndMortySlice.actions

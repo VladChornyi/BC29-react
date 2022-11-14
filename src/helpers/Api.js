@@ -42,9 +42,17 @@ export const getProducts = async () => {
   return data;
 };
 
-export const getCharactersRickAndMorty = async () => {
+// export const getCharactersRickAndMorty = async () => {
+//   const { data } = await axios.get(
+//     'https://rickandmortyapi.com/api/character'
+//   );
+//   console.log(data)
+//   return data.results;
+// }
+
+export const getCharactersRickAndMorty = async (page) => {
   const { data } = await axios.get(
-    'https://rickandmortyapi.com/api/character'
+    `https://rickandmortyapi.com/api/character/?page=${page}`
   );
   console.log(data)
   return data.results;
