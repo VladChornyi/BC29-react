@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { logout } from "../../redux/auth/authSlice";
 
 export const HeaderMain = () => {
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
     <header>
@@ -23,8 +23,13 @@ const dispatch = useDispatch()
           <li>
             <NavLink to="/products">Продукти</NavLink>
           </li>
+          <li>
+            <NavLink to="/rickandmorty">Рік та Морті</NavLink>
+          </li>
         </ul>
-        <button type="button" onClick={()=> dispatch(logout())} >Вийти</button>
+        <button type="button" onClick={() => dispatch(logout())}>
+          Вийти
+        </button>
       </nav>
     </header>
   );

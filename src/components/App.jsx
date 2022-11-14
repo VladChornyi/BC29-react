@@ -1,14 +1,15 @@
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import { Route, Routes } from 'react-router-dom'
-import Registration from '../pages/Registration/Registration'
-import { Layout } from './Layout/Layout'
-import { LoginPage } from '../pages/LoginPage/LoginPage'
-import './App.css'
-import ProductsPage from '../pages/ProductsPage'
-import PrivateRouts from './PrivateRouts/PrivateRouts'
-import PublicRouts from './PublicRouts/PublicRouts'
-import HomePage from '../pages/HomePage/HomePage'
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Route, Routes } from "react-router-dom";
+import Registration from "../pages/Registration/Registration";
+import { Layout } from "./Layout/Layout";
+import { LoginPage } from "../pages/LoginPage/LoginPage";
+import "./App.css";
+import ProductsPage from "../pages/ProductsPage";
+import PrivateRouts from "./PrivateRouts/PrivateRouts";
+import PublicRouts from "./PublicRouts/PublicRouts";
+import HomePage from "../pages/HomePage/HomePage";
+import RickAndMorty from "../pages/RickAndMorty/RickAndMorty";
 
 // import { Actors } from '../pages/ActorsPage/ActorsPage.jsx'
 // import { ProductsList } from './ProductsList'
@@ -39,6 +40,7 @@ export const App = () => {
         <Route path="/" element={<PrivateRouts />}>
           <Route path="/products" element={<ProductsPage />} />
         </Route>
+        <Route path="/rickandmorty" element={<RickAndMorty />} />
       </Routes>
       <ToastContainer
         position="top-right"
@@ -55,8 +57,8 @@ export const App = () => {
 
       <ToastContainer />
     </Layout>
-  )
-}
+  );
+};
 
 // import './App.css'
 // import actorsData from '../data/actors.json'

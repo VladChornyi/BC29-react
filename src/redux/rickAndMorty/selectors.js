@@ -1,0 +1,1 @@
+export const selectorCharacters = state => state.rickAndMorty.characters;
